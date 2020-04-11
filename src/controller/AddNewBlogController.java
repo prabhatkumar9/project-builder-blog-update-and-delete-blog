@@ -31,7 +31,7 @@ public class AddNewBlogController extends HttpServlet {
 		LocalDate postedOn = LocalDate.now();
 		System.out.println(blogTitle);
 		Blog blog = new Blog();
-	//	blog.setBlogId(++i);
+		blog.setBlogId(++i);
 		blog.setBlogTitle(blogTitle);
 		blog.setBlogDescription(blogDescription);
 		blog.setPostedOn(postedOn);
@@ -40,14 +40,14 @@ public class AddNewBlogController extends HttpServlet {
 		try {
 		    blogDao.insertBlog(blog);
 		} catch (ClassNotFoundException | SQLException | IOException e) {
-		    // TODO Auto-generated catch block
+		    
 		    e.printStackTrace();
 		}
 		response.sendRedirect("allblogs");
-		/*
-		 * RequestDispatcher rd=this.getServletContext().getRequestDispatcher(
-		 * "/WEB-INF/views/blogView.jsp"); rd.forward(request, response);
-		 */
+		
+//		  RequestDispatcher rd=this.getServletContext().getRequestDispatcher(
+//		  "/WEB-INF/views/blogView.jsp"); rd.forward(request, response);
+		 
 		
 	}
 }

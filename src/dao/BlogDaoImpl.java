@@ -70,7 +70,7 @@ public class BlogDaoImpl{
     }
     
     public boolean deleteBlog(int id) throws ClassNotFoundException, SQLException, IOException {
-	String sql = "DELETE FROM table_name WHERE  id="+id;
+	String sql = "DELETE FROM blog WHERE  id="+id;
 	Statement st = ConnectionManager.getConnection().createStatement();
 	int x = st.executeUpdate(sql);
 	st.close();
@@ -88,10 +88,11 @@ public class BlogDaoImpl{
 	 LocalDate  date = blog.getPostedOn();
 	String sql = "UPDATE blog SET  title = ?, blogdesc = ?,  bdate = ? WHERE id = ?"; 
 	 PreparedStatement ps = 	ConnectionManager.getConnection().prepareStatement(sql);
-	 ps.setInt(1, id);
-	 ps.setString(2, title);
-	 ps.setString(3, decs);
-	 ps.setDate(4,Date.valueOf(date));
+	
+	 ps.setString(1, title);
+	 ps.setString(2, decs);
+	 ps.setDate(3,Date.valueOf(date));
+	 ps.setInt(4, id);
 	int x = ps.executeUpdate();
 	 ps.getConnection().close();
 	 if(x != 0) {
